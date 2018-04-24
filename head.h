@@ -15,6 +15,7 @@ struct job            //Data structure for each jobs
 
 struct scheduler    //Data structure for whole the scheduler
 {
+    char file_name[100];
     int num;
     struct job j[9];
 };

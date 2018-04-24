@@ -3,8 +3,6 @@
  * 1509853V-I011-0026
  *         File: readf.c
  * To read imformation from job.txt
- * Make sure that a.out is in the 
- * same folder with job.txt
 ***********************************/
 
 #include <stdio.h>
@@ -19,7 +17,7 @@ int read_job()
     char buff[300];
     FILE *fin;
     s.num = 0;
-    fin = fopen("./job.txt","r");
+    fin = fopen(s.file_name,"r");
     printf("Start reading job file.\n");
     while(fgets(buff, 300, fin)!=NULL)
     {
@@ -47,8 +45,19 @@ int print_job()
 }
 
 
-int main()
+int main(int argc,char** argv)
 {
+    if(argc == 1)
+    {
+        printf("Need a input file.\n");
+        return 1;
+    }
+    else if(argc > 2)
+    {
+        printf("Too many arguments.\n");
+        return 1;
+    }
+    strcpy(s.file_name, argv[1]);
     read_job();
     print_job();
     return 0;
